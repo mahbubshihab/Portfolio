@@ -1,12 +1,12 @@
 "use client";
 
 import { useCallback } from "react";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { loadSlim } from "@tsparticles/slim";
 
 export default function ParticleBackground() {
   const particlesInit = useCallback(async (engine: any) => {
-    await loadFull(engine);
+    await loadSlim(engine);
   }, []);
 
   const particlesOptions = {
@@ -24,5 +24,9 @@ export default function ParticleBackground() {
     }
   };
 
-  return <Particles id="tsparticles" init={particlesInit} options={particlesOptions} />;
+  return (
+    <ParticlesProvider init={particlesInit}>
+      <Particles id="tsparticles" options={particlesOptions} />
+    </ParticlesProvider>
+  );
 }
