@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
-import { BackgroundGlow } from "@/components/layout/BackgroundGlow";
-import BackgroundClassWrapper from "@/components/layout/BackgroundClassWrapper";
+import { BackgroundProvider } from "@/context/BackgroundContext";
+import { ThemeProvider } from "next-themes";
+import RootLayoutContent from "@/components/layout/RootLayoutContent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,19 +20,24 @@ export const metadata: Metadata = {
   description: "Portfolio of Mahbub Shihab, showcasing AI integration, web and mobile app development.",
 };
 
-import { BackgroundProvider } from "@/context/BackgroundContext";
-import RootLayoutContent from "@/components/layout/RootLayoutContent";
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <BackgroundProvider>
-      <RootLayoutContent>
-        {children}
-      </RootLayoutContent>
-    </BackgroundProvider>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <BackgroundProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+            <RootLayoutContent>
+              {children}
+            </RootLayoutContent>
+          </ThemeProvider>
+        </BackgroundProvider>
+      </body>
+    </html>
   );
 }
-
-

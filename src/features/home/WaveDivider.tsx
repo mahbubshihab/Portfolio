@@ -5,42 +5,60 @@ import { motion } from "framer-motion";
 interface WaveDividerProps {
   className?: string;
   inverted?: boolean;
-  fill?: string; // base fill color class name (e.g., "fill-primary")
 }
 
-// Define a set of wave path shapes to animate between – subtle, smooth variations
-const waveKeyframes = [
-  "M0,30 C150,80 350,0 500,30 V150 H0 Z",
-  "M0,35 C150,85 350,5 500,35 V150 H0 Z",
-  "M0,30 C150,80 350,0 500,30 V150 H0 Z",
+// Complex wave path frames to animate between for smooth fluid simulation
+const wavePaths = [
+  "M0,50 C120,90 280,20 400,60 C460,75 480,85 500,90 V150 H0 Z",
+  "M0,60 C100,20 250,90 380,50 C440,35 470,55 500,70 V150 H0 Z",
+  "M0,50 C120,90 280,20 400,60 C460,75 480,85 500,90 V150 H0 Z",
 ];
 
-// Define a set of fill colors to transition through – matching the site palette
-const fillColors = ["#1e3a8a", "#2563eb", "#60a5fa"]; // primary shades (adjust if needed)
+const wavePathsSecondary = [
+  "M0,80 C150,110 300,50 500,80 V150 H0 Z",
+  "M0,60 C120,90 280,30 500,60 V150 H0 Z",
+  "M0,80 C150,110 300,50 500,80 V150 H0 Z",
+];
 
-export function WaveDivider({ className = "", inverted = false, fill = "fill-primary" }: WaveDividerProps) {
+export function WaveDivider({ className = "", inverted = false }: WaveDividerProps) {
   return (
-    <div className={`w-full overflow-hidden absolute bottom-0 left-0 ${className} ${inverted ? "rotate-180" : ""}`}>
+    <div className={`w-full overflow-hidden absolute left-0 leading-[0] ${className} ${inverted ? "rotate-180" : ""}`}>
       <svg
-        className="relative block w-full"
+        className="relative block w-full h-[60px] md:h-[120px]"
         viewBox="0 0 500 150"
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Background wave – slower, lighter */}
+        <defs>
+          {/* Main Neon Gradient */}
+          <linearGradient id="neon-wave" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.4" />
+            <stop offset="50%" stopColor="#8b5cf6" stopOpacity="0.6" />
+            <stop offset="100%" stopColor="#d946ef" stopOpacity="0.4" />
+          </linearGradient>
+
+          {/* Secondary Soft Gradient */}
+          <linearGradient id="soft-wave" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.2" />
+            <stop offset="50%" stopColor="#06b6d4" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
+
+        {/* Back wave - slower, different offset */}
         <motion.path
-          d={waveKeyframes[0]}
-          fill="var(--wave-bg)"
-          animate={{ d: waveKeyframes, fill: fillColors }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-          style={{ opacity: 0.4 }}
+          d={wavePathsSecondary[0]}
+          fill="url(#soft-wave)"
+          animate={{ d: wavePathsSecondary }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
-        {/* Foreground wave – faster, stronger */}
+
+        {/* Mid wave - glowing border overlay */}
         <motion.path
-          d={waveKeyframes[0]}
-          className={fill}
-          animate={{ d: waveKeyframes, fill: fillColors }}
-          transition={{ duration: 8, repeat: Infinity, ease: "linear", delay: 1 }}
+          d={wavePaths[0]}
+          fill="url(#neon-wave)"
+          animate={{ d: wavePaths }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
       </svg>
     </div>

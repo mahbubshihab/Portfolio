@@ -6,8 +6,11 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 import Image from "next/image";
 import Link from "next/link";
 import Typewriter from "typewriter-effect";
-import { WaveDivider } from "./WaveDivider";
 import { useRef } from "react";
+import { WaveDivider } from "./WaveDivider";
+import dynamic from "next/dynamic";
+
+const FloatingParticles3D = dynamic(() => import("@/components/layout/FloatingParticles3D"), { ssr: false });
 
 export function HeroSection() {
   const containerRef = useRef(null);
@@ -36,7 +39,10 @@ export function HeroSection() {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-screen flex items-center pt-24 pb-40 px-6 bg-background overflow-hidden">
+    <section ref={containerRef} className="relative min-h-screen flex items-center pt-24 pb-40 px-6 bg-transparent overflow-hidden">
+      {/* 3D Floating Particle Background */}
+      <FloatingParticles3D />
+
       {/* Background Particles / Glow */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none animate-spin-slow" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[120px] pointer-events-none animate-spin-slow" />

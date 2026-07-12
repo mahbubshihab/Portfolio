@@ -1,39 +1,65 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useSpring } from "framer-motion";
 
 export function ConnectingPath() {
+  const { scrollYProgress } = useScroll();
+  const pathLength = useSpring(scrollYProgress, { stiffness: 60, damping: 20 });
+
   return (
-    <div className="absolute inset-0 -z-30 pointer-events-none select-none overflow-hidden opacity-30">
+    <div className="absolute inset-0 pointer-events-none select-none overflow-hidden opacity-30 z-0">
       <svg
-        className="w-full h-full min-h-[3000px]"
+        className="w-full h-full min-h-[3500px]"
         viewBox="0 0 1440 3500"
         fill="none"
         preserveAspectRatio="none"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          <linearGradient id="path-gradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.2" />
-            <stop offset="40%" stopColor="var(--accent)" stopOpacity="0.1" />
-            <stop offset="80%" stopColor="var(--primary)" stopOpacity="0.05" />
-            <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
+          {/* Glowing Neon Laser Gradient */}
+          <linearGradient id="neon-laser" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#06b6d4" />
+            <stop offset="30%" stopColor="#8b5cf6" />
+            <stop offset="60%" stopColor="#d946ef" />
+            <stop offset="90%" stopColor="#3b82f6" />
+            <stop offset="100%" stopColor="#06b6d4" />
           </linearGradient>
         </defs>
 
-        {/* Subtle geometric curved guide line */}
+        {/* Faded thick outer glow path (Simulating glow without expensive SVG filter) */}
         <motion.path
-          d="M 1000 350 
-             C 1150 650, 250 850, 320 1250 
-             C 380 1550, 1050 1750, 950 2150 
-             C 850 2450, 250 2750, 320 3150"
-          stroke="url(#path-gradient)"
+          d="M 1200 200 
+             C 1500 600, -100 1000, 720 1500 
+             C 1500 2000, -200 2400, 1100 2900"
+          stroke="url(#neon-laser)"
+          strokeWidth="6"
+          strokeLinecap="round"
+          fill="none"
+          className="opacity-20"
+          style={{ pathLength }}
+        />
+        
+        {/* Inner bright core path */}
+        <motion.path
+          d="M 1200 200 
+             C 1500 600, -100 1000, 720 1500 
+             C 1500 2000, -200 2400, 1100 2900"
+          stroke="rgba(255, 255, 255, 0.9)"
           strokeWidth="1.5"
           strokeLinecap="round"
           fill="none"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 3, ease: "easeInOut" }}
+          style={{ pathLength }}
+        />
+
+        {/* Faded background guide path */}
+        <path
+          d="M 1200 200 
+             C 1500 600, -100 1000, 720 1500 
+             C 1500 2000, -200 2400, 1100 2900"
+          stroke="rgba(255, 255, 255, 0.03)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
         />
       </svg>
     </div>

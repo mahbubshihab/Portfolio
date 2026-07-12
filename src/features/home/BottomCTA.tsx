@@ -17,7 +17,7 @@ export function BottomCTA() {
 
   return (
     <div className="relative">
-      <section className="bg-secondary pt-24 pb-48 text-center px-6 relative z-10 overflow-hidden">
+      <section className="bg-transparent pt-24 pb-48 text-center px-6 relative z-10 overflow-hidden">
         {/* Animated Background Mesh / Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
 
@@ -34,10 +34,15 @@ export function BottomCTA() {
         />
 
         <motion.div
-          initial={{ opacity: 0, y: 80, filter: "blur(15px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 120, scale: 0.88 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} // smooth ease out
+          transition={{
+            type: "spring",
+            stiffness: 45,
+            damping: 13,
+            mass: 1.1
+          }}
           className="max-w-5xl mx-auto relative group"
           onMouseMove={handleMouseMove}
         >
@@ -99,8 +104,7 @@ export function BottomCTA() {
         </motion.div>
       </section>
       
-      {/* Smooth transition into Footer */}
-      <WaveDivider className="bottom-0 translate-y-px" fill="fill-background" inverted={true} />
+      <WaveDivider className="bottom-0 translate-y-px" inverted={true} />
     </div>
   );
 }

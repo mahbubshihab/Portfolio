@@ -107,23 +107,24 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: n
   );
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-60px" }}
-      style={{ y: yParallax }}
-      transition={{
-        duration: 0.7,
-        delay: index * 0.15,
-        type: "spring",
-        stiffness: 80,
-        damping: 20,
-      }}
-      className="group relative rounded-3xl overflow-hidden"
-    >
+    <div style={{ perspective: 1200 }} className="w-full h-full">
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        initial={{ opacity: 0, y: 120, rotateX: 25, scale: 0.85 }}
+        whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        style={{ y: yParallax }}
+        transition={{
+          duration: 0.9,
+          delay: index * 0.15,
+          type: "spring",
+          stiffness: 70,
+          damping: 18,
+        }}
+        className="group relative rounded-3xl overflow-hidden h-full"
+      >
       {/* Animated gradient border */}
       <div className={`absolute inset-0 bg-gradient-to-br ${service.borderColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
       <div className="absolute inset-[1px] bg-gradient-to-b from-border/40 to-transparent rounded-3xl group-hover:opacity-0 transition-opacity duration-500" />
@@ -172,12 +173,13 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: n
         </div>
       </div>
     </motion.div>
+  </div>
   );
 }
 
 export function ServicesSection() {
   return (
-    <section className="pt-32 pb-40 px-6 relative bg-background">
+    <section className="pt-32 pb-40 px-6 relative bg-transparent">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="text-center mb-20">
@@ -224,7 +226,7 @@ export function ServicesSection() {
         </div>
       </div>
 
-      <WaveDivider className="bottom-0 translate-y-px" fill="fill-secondary" />
+      <WaveDivider className="bottom-0 translate-y-px" />
     </section>
   );
 }

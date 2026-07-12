@@ -37,7 +37,7 @@ const ROW_2 = [
 
 export function TechMarquee() {
   return (
-    <section className="bg-secondary relative pt-12 pb-24 overflow-hidden">
+    <section className="bg-transparent relative pt-12 pb-24 overflow-hidden">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -89,8 +89,7 @@ export function TechMarquee() {
       <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-secondary to-transparent z-20" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-secondary to-transparent z-20" />
 
-      {/* Bottom wave dividing Marquee and Services */}
-      <WaveDivider className="bottom-0 translate-y-px" inverted={true} fill="fill-background" />
+      <WaveDivider className="bottom-0 translate-y-px" inverted={true} />
     </section>
   );
 }
