@@ -15,4 +15,4 @@ env:
   - variable: CONTACT_RECEIVER_EMAIL
     value: contact@mahbubshihab.com
   - variable: CONTACT_FROM_EMAIL
-    value: Portfolio <contact@mahbubshihab.com>
+    value: Mahbub Shihab <contact@mahbubshihab.com>
