@@ -7,7 +7,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Typewriter from "typewriter-effect";
 import { WaveDivider } from "./WaveDivider";
-import { TypewriterSVG } from "./TypewriterSVG";
 import { useRef } from "react";
 
 export function HeroSection() {
@@ -57,18 +56,31 @@ export function HeroSection() {
             className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-secondary/80 border border-border/50 backdrop-blur-md mb-8 shadow-lg shadow-black/20"
           >
             <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </span>
-            <span className="text-sm text-secondary-foreground font-semibold tracking-wide uppercase">Available for work</span>
+            <span className="text-sm text-secondary-foreground font-semibold tracking-wide uppercase">Available for New Projects</span>
           </motion.div>
 
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6 leading-[1.2]">
             <motion.span custom={1} initial="hidden" animate="visible" variants={textVariants} className="block text-3xl md:text-4xl lg:text-5xl text-foreground/80 mb-2 font-bold">
-              Hi, I'm
+              Hi, I'm <span className="text-foreground">Mahbub Shihab</span>
             </motion.span>
-            <motion.div className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-accent pb-2 h-[1.5em]">
-              <TypewriterSVG />
+            <motion.div custom={2} initial="hidden" animate="visible" variants={textVariants} className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-accent pb-2 h-[1.5em] mt-2">
+              <Typewriter
+                options={{
+                  strings: [
+                    "Full-Stack Engineer",
+                    "Mobile App Developer",
+                    "AI Integration Specialist",
+                    "Automation Expert",
+                  ],
+                  autoStart: true,
+                  loop: true,
+                  wrapperClassName: "text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-accent",
+                  cursorClassName: "text-accent",
+                }}
+              />
             </motion.div>
           </h1>
 
@@ -77,9 +89,9 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             variants={textVariants}
-            className="text-lg md:text-2xl text-secondary-foreground max-w-xl mb-10 leading-relaxed font-light"
+            className="text-lg md:text-xl lg:text-2xl text-secondary-foreground max-w-2xl mb-12 leading-relaxed font-light"
           >
-            A passionate Full-Stack & Mobile Developer specializing in building exceptional, high-performance digital experiences.
+            I architect and engineer scalable, high-performance software solutions. With deep expertise in modern web technologies and native mobile frameworks, I transform complex business challenges into elegant, user-centric digital experiences.
           </motion.p>
 
           <motion.div
@@ -112,12 +124,12 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             variants={textVariants}
-            className="flex items-center gap-6 mt-14"
+            className="flex items-center gap-5 mt-14"
           >
             {[
-              { icon: FaGithub, href: "https://github.com", label: "GitHub" },
-              { icon: FaLinkedin, href: "https://linkedin.com", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:hello@example.com", label: "Email" }
+              { icon: FaGithub, href: "https://github.com/mahbubshihab", label: "GitHub" },
+              { icon: FaLinkedin, href: "https://linkedin.com/in/mahbubshihab", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:contact@mahbub.dev", label: "Email" }
             ].map((social, i) => (
               <motion.a 
                 whileHover={{ scale: 1.15, y: -4 }}
@@ -126,7 +138,7 @@ export function HeroSection() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="text-secondary-foreground hover:text-foreground transition-colors p-4 bg-secondary/50 border border-border/30 rounded-2xl backdrop-blur-sm hover:border-primary/50 hover:bg-secondary hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]"
+                className="text-secondary-foreground hover:text-primary transition-colors p-4 bg-secondary/50 border border-border/30 rounded-2xl backdrop-blur-sm hover:border-primary/50 hover:bg-secondary hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]"
                 aria-label={social.label}
               >
                 <social.icon className="w-6 h-6" />
@@ -137,31 +149,45 @@ export function HeroSection() {
 
         {/* Right Content - Image with 3D Float */}
         <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
+          animate={{ opacity: 1, scale: 1, rotateY: 0 }}
           transition={{ duration: 1.2, delay: 0.3, type: "spring", stiffness: 50 }}
           className="relative z-10 lg:ml-auto w-full max-w-[500px] aspect-square"
         >
           <motion.div 
-            animate={{ y: [-10, 10, -10], rotate: [-2, 2, -2] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            animate={{ y: [-15, 15, -15] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             className="w-full h-full relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-[3rem] rotate-6 opacity-30 blur-xl" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-[3rem] -rotate-3 opacity-20 blur-2xl" />
+            {/* Ambient Backglow */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-[3rem] opacity-30 blur-[60px]" />
             
-            <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-white/10 bg-secondary/40 backdrop-blur-xl shadow-2xl p-3">
-              <div className="w-full h-full rounded-[2.5rem] overflow-hidden relative group">
+            {/* Glassmorphic Image Container */}
+            <div className="relative w-full h-full rounded-[3rem] overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-white/0 backdrop-blur-2xl shadow-[0_0_80px_rgba(59,130,246,0.15)] p-2">
+              <div className="w-full h-full rounded-[2.5rem] overflow-hidden relative group border border-white/10">
                 <Image
                   src="/profile.png"
                   alt="Mahbub Shihab"
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60" />
+                {/* Gradient Overlay for blending */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
               </div>
             </div>
+            
+            {/* Decorative Floating Elements */}
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+              className="absolute -top-10 -right-10 w-32 h-32 bg-accent/20 rounded-full blur-2xl pointer-events-none"
+            />
+            <motion.div 
+              animate={{ rotate: -360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-2xl pointer-events-none"
+            />
           </motion.div>
         </motion.div>
       </motion.div>
