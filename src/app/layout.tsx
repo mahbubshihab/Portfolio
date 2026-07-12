@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BackgroundGlow } from "@/components/layout/BackgroundGlow";
+import BackgroundClassWrapper from "@/components/layout/BackgroundClassWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,24 +21,19 @@ export const metadata: Metadata = {
   description: "Portfolio of Mahbub Shihab, showcasing AI integration, web and mobile app development.",
 };
 
+import { BackgroundProvider } from "@/context/BackgroundContext";
+import RootLayoutContent from "@/components/layout/RootLayoutContent";
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
-    >
-      <body className="min-h-full flex flex-col">
-        <BackgroundGlow />
-        <Navbar />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <BackgroundProvider>
+      <RootLayoutContent>
+        {children}
+      </RootLayoutContent>
+    </BackgroundProvider>
   );
 }
+
+

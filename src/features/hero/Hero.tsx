@@ -28,14 +28,7 @@ export function Hero() {
               <span className="text-sm font-mono tracking-wide">System.init() : Online</span>
             </motion.div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 leading-[1.1]"
-            >
-              Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-500 to-accent">Mahbub Shihab_</span>
-            </motion.h1>
+            
 
             <motion.p
               initial={{ opacity: 0, y: 30 }}

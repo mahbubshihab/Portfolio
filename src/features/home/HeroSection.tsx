@@ -62,7 +62,7 @@ export function HeroSection() {
             <span className="text-sm text-secondary-foreground font-semibold tracking-wide uppercase">Available for New Projects</span>
           </motion.div>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-6 leading-normal">
+          <h1 className="text-lg md:text-xl lg:text-2xl font-extrabold tracking-tight text-foreground mb-6 leading-normal">
             <motion.div custom={1} initial="hidden" animate="visible" variants={textVariants} className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-accent pb-2">
               <Typewriter
                 options={{
@@ -86,9 +86,9 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             variants={textVariants}
-            className="text-lg md:text-xl lg:text-2xl text-secondary-foreground max-w-2xl mb-12 leading-relaxed font-light"
+            className="text-base md:text-lg lg:text-xl text-secondary-foreground max-w-2xl mb-12 leading-relaxed font-light"
           >
-            I architect and engineer scalable, high-performance software solutions. With deep expertise in modern web technologies and native mobile frameworks, I transform complex business challenges into elegant, user-centric digital experiences.
+            I design and build high‑performance, scalable software solutions. Leveraging deep expertise in modern web and native mobile technologies, I turn complex business challenges into elegant, user‑focused digital experiences.
           </motion.p>
 
           <motion.div

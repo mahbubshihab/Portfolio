@@ -5,49 +5,44 @@ import { motion } from "framer-motion";
 interface WaveDividerProps {
   className?: string;
   inverted?: boolean;
-  fill?: string;
+  fill?: string; // base fill color class name (e.g., "fill-primary")
 }
+
+// Define a set of wave path shapes to animate between – subtle, smooth variations
+const waveKeyframes = [
+  "M0,30 C150,80 350,0 500,30 V150 H0 Z",
+  "M0,35 C150,85 350,5 500,35 V150 H0 Z",
+  "M0,30 C150,80 350,0 500,30 V150 H0 Z",
+];
+
+// Define a set of fill colors to transition through – matching the site palette
+const fillColors = ["#1e3a8a", "#2563eb", "#60a5fa"]; // primary shades (adjust if needed)
 
 export function WaveDivider({ className = "", inverted = false, fill = "fill-primary" }: WaveDividerProps) {
   return (
-    <div className={`absolute left-0 right-0 w-full overflow-hidden leading-none z-0 pointer-events-none ${className} ${inverted ? 'rotate-180' : ''}`}>
-      {/* Background slower wave */}
-      <motion.div
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ repeat: Infinity, ease: "linear", duration: 15 }}
-        className="relative flex w-[200%]"
+    <div className={`w-full overflow-hidden absolute bottom-0 left-0 ${className} ${inverted ? "rotate-180" : ""}`}>
+      <svg
+        className="relative block w-full"
+        viewBox="0 0 500 150"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        {[...Array(2)].map((_, i) => (
-          <svg
-            key={`bg-${i}`}
-            className="block w-[50%] h-[40px] md:h-[80px]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" className={`${fill} opacity-40`} />
-          </svg>
-        ))}
-      </motion.div>
-      
-      {/* Foreground faster wave */}
-      <motion.div
-        animate={{ x: ["-50%", "0%"] }}
-        transition={{ repeat: Infinity, ease: "linear", duration: 12 }}
-        className="absolute bottom-0 flex w-[200%]"
-      >
-        {[...Array(2)].map((_, i) => (
-          <svg
-            key={`fg-${i}`}
-            className="block w-[50%] h-[40px] md:h-[80px]"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className={fill} />
-          </svg>
-        ))}
-      </motion.div>
+        {/* Background wave – slower, lighter */}
+        <motion.path
+          d={waveKeyframes[0]}
+          fill="var(--wave-bg)"
+          animate={{ d: waveKeyframes, fill: fillColors }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          style={{ opacity: 0.4 }}
+        />
+        {/* Foreground wave – faster, stronger */}
+        <motion.path
+          d={waveKeyframes[0]}
+          className={fill}
+          animate={{ d: waveKeyframes, fill: fillColors }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear", delay: 1 }}
+        />
+      </svg>
     </div>
   );
 }
