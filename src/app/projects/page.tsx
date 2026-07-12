@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PROJECTS, Project } from "@/lib/projects";
 import Link from "next/link";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 type CategoryFilter = "All" | "Web" | "Mobile" | "AI" | "Cloud";
 
@@ -80,79 +80,70 @@ export default function ProjectsPage() {
               const { borderColor, color } = categoryColors[project.category] || categoryColors.Web;
               
               return (
-                <div key={project.slug} style={{ perspective: 1200 }} className="w-full h-full">
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0, y: 50, scale: 0.94 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.94 }}
-                    transition={{ duration: 0.6, type: "spring", stiffness: 60, damping: 15 }}
-                    className="group relative rounded-3xl overflow-hidden h-full flex flex-col"
-                  >
-                    {/* Animated gradient border */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${borderColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-                    <div className="absolute inset-[1px] bg-gradient-to-b from-border/40 to-transparent rounded-3xl group-hover:opacity-0 transition-opacity duration-500" />
+                <Link key={project.slug} href={`/projects/${project.slug}`} className="block w-full h-full cursor-pointer">
+                  <div style={{ perspective: 1200 }} className="w-full h-full">
+                    <motion.div
+                      layout
+                      initial={{ opacity: 0, y: 50, scale: 0.94 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.94 }}
+                      transition={{ duration: 0.6, type: "spring", stiffness: 60, damping: 15 }}
+                      className="group relative rounded-3xl overflow-hidden h-full flex flex-col"
+                    >
+                      {/* Animated gradient border */}
+                      <div className={`absolute inset-0 bg-gradient-to-br ${borderColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                      <div className="absolute inset-[1px] bg-gradient-to-b from-border/40 to-transparent rounded-3xl group-hover:opacity-0 transition-opacity duration-500" />
 
-                    {/* Card Content Box */}
-                    <div className="relative z-10 h-full bg-secondary/80 backdrop-blur-xl rounded-[calc(1.5rem-1px)] m-[1px] flex flex-col flex-1 overflow-hidden">
-                      
-                      {/* Cover Image Container */}
-                      <div className="relative w-full h-52 overflow-hidden bg-slate-900/80 rounded-t-[calc(1.5rem-1px)] border-b border-border/40">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover transform group-hover:scale-103 transition-transform duration-700 pointer-events-none"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-85" />
+                      {/* Card Content Box */}
+                      <div className="relative z-10 h-full bg-secondary/80 backdrop-blur-xl rounded-[calc(1.5rem-1px)] m-[1px] flex flex-col flex-1 overflow-hidden">
                         
-                        {/* Glowing category badge */}
-                        <div className={`absolute top-4 right-4 px-3 py-1 rounded-full bg-gradient-to-br ${color} text-white text-[10px] font-mono font-bold uppercase tracking-widest shadow-lg`}>
-                          {project.category}
+                        {/* Cover Image Container */}
+                        <div className="relative w-full h-52 overflow-hidden bg-slate-900/80 rounded-t-[calc(1.5rem-1px)] border-b border-border/40">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full object-cover transform group-hover:scale-103 transition-transform duration-700 pointer-events-none"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-85" />
+                          
+                          {/* Glowing category badge */}
+                          <div className={`absolute top-4 right-4 px-3 py-1 rounded-full bg-gradient-to-br ${color} text-white text-[10px] font-mono font-bold uppercase tracking-widest shadow-lg`}>
+                            {project.category}
+                          </div>
                         </div>
-                      </div>
 
-                      {/* Info Content */}
-                      <div className="p-6 flex flex-col flex-grow">
-                        <h3 className="text-xl md:text-2xl font-bold mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">
-                          {project.title}
-                        </h3>
-                        <p className="text-foreground/70 mb-6 text-sm leading-relaxed font-light flex-grow">
-                          {project.description}
-                        </p>
+                        {/* Info Content */}
+                        <div className="p-6 flex flex-col flex-grow">
+                          <h3 className="text-xl md:text-2xl font-bold mb-2 tracking-tight group-hover:text-primary transition-colors duration-300">
+                            {project.title}
+                          </h3>
+                          <p className="text-foreground/70 mb-6 text-sm leading-relaxed font-light flex-grow">
+                            {project.description}
+                          </p>
 
-                        <div className="flex flex-wrap gap-1.5 mb-6">
-                          {project.tech.map((t) => (
-                            <span
-                              key={t}
-                              className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-950/60 border border-border/80 text-foreground/60 group-hover:border-primary/30 transition-colors"
-                            >
-                              {t}
+                          <div className="flex flex-wrap gap-1.5 mb-6">
+                            {project.tech.map((t) => (
+                              <span
+                                key={t}
+                                className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-slate-950/60 border border-border/80 text-foreground/60 group-hover:border-primary/30 transition-colors"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="flex items-center justify-between pt-4 border-t border-border/40 mt-auto">
+                            <span className="group-hover:text-primary flex items-center gap-1.5 text-sm font-semibold transition-colors duration-300">
+                              Details
+                              <ArrowRight size={15} className="group-hover:translate-x-1.5 transition-transform duration-300" />
                             </span>
-                          ))}
-                        </div>
-
-                        <div className="flex items-center justify-between pt-4 border-t border-border/40 mt-auto">
-                          <Link
-                            href={`/projects/${project.slug}`}
-                            className="group/link flex items-center gap-1.5 text-sm font-semibold hover:text-primary transition-colors"
-                          >
-                            Case Study
-                            <ArrowRight size={15} className="group-hover/link:translate-x-1 transition-transform" />
-                          </Link>
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-1.5 text-sm font-semibold hover:text-primary transition-colors"
-                          >
-                            <ExternalLink size={15} /> Demo
-                          </a>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </motion.div>
-                </div>
+                    </motion.div>
+                  </div>
+                </Link>
               );
             })}
           </AnimatePresence>
