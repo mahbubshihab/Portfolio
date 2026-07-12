@@ -14,7 +14,7 @@ export const BackgroundProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [backgroundClass, setBackgroundClass] = useState("bg-primary");
+  const [backgroundClass, setBackgroundClass] = useState("bg-background");
   return (
     <BackgroundContext.Provider value={{ backgroundClass, setBackgroundClass }}>
       {children}

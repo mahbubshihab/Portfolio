@@ -20,7 +20,7 @@ export default function RootLayoutContent({ children }: { children: React.ReactN
   const opacityLayer3 = useTransform(scrollYProgress, [0.55, 0.85], [0, 1]);
 
   return (
-    <div className={`${backgroundClass} flex-1 flex flex-col min-h-screen relative text-foreground overflow-hidden`}>
+    <div className="bg-background flex-1 flex flex-col min-h-screen relative text-foreground overflow-hidden">
       {/* Background Layers - Fixed & Hardware-Accelerated (Opacity changes only) */}
       <div className="absolute inset-0 -z-30 pointer-events-none bg-[#030014]" />
       
