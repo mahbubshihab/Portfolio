@@ -62,11 +62,8 @@ export function HeroSection() {
             <span className="text-sm text-secondary-foreground font-semibold tracking-wide uppercase">Available for New Projects</span>
           </motion.div>
 
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold tracking-tight text-foreground mb-6 leading-[1.2]">
-            <motion.span custom={1} initial="hidden" animate="visible" variants={textVariants} className="block text-3xl md:text-4xl lg:text-5xl text-foreground/80 mb-2 font-bold">
-              Hi, I'm <span className="text-foreground">Mahbub Shihab</span>
-            </motion.span>
-            <motion.div custom={2} initial="hidden" animate="visible" variants={textVariants} className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-accent pb-2 h-[1.5em] mt-2">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground mb-6 leading-normal">
+            <motion.div custom={1} initial="hidden" animate="visible" variants={textVariants} className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-accent pb-2">
               <Typewriter
                 options={{
                   strings: [
