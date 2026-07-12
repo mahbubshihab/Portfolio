@@ -95,7 +95,7 @@ export function Contact() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500"></span>
               </span>
-              <span className="text-xs font-mono text-foreground/70">Ready for Freelance contracts & AI integrations.</span>
+              <span className="text-xs font-mono text-foreground/70">Ready for Full-time Roles, Remote Contracts & AI integrations.</span>
             </div>
           </div>
 
