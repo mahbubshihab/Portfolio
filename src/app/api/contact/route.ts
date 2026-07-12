@@ -18,6 +18,18 @@ export async function POST(request: Request) {
     const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || "contact@mahbubshihab.com";
     const fromEmail = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
 
+    // Extract actual email address from fromEmail (e.g. "Mahbub Shihab <contact@mahbubshihab.com>" -> "contact@mahbubshihab.com")
+    let rawFromEmail = fromEmail;
+    const emailMatch = fromEmail.match(/<(.+)>/);
+    if (emailMatch && emailMatch[1]) {
+      rawFromEmail = emailMatch[1];
+    }
+
+    // Set the notification display name to the visitor's name so it shows in Gmail cleanly
+    const notificationSender = rawFromEmail === "onboarding@resend.dev"
+      ? `onboarding@resend.dev`
+      : `${name} <${rawFromEmail}>`;
+
     // 1. Send Notification Email to Mahbub Shihab
     const notificationHtml = `
       <div style="background-color: #030014; padding: 40px 20px; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #e0e7ff; min-height: 100%;">
@@ -63,7 +75,7 @@ export async function POST(request: Request) {
     `;
 
     const { data: notificationData, error: notificationError } = await resend.emails.send({
-      from: fromEmail,
+      from: notificationSender,
       to: receiverEmail,
       subject: `New Message from ${name}`,
       html: notificationHtml,
