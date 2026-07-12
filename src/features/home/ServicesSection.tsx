@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, useSpring, useScroll, useTransform } from "framer-motion";
 import {
   SiReact, SiNextdotjs, SiVuedotjs, SiTailwindcss, SiVite,
   SiFlutter, SiKotlin, SiSwift,
@@ -94,14 +94,27 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: n
     mouseY.set(ref.current ? ref.current.offsetHeight / 2 : 0);
   }
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  // Alternating reverse scroll / parallax effect
+  const yParallax = useTransform(
+    scrollYProgress,
+    [0, 1],
+    index % 2 === 0 ? [50, -50] : [-50, 50]
+  );
+
   return (
     <motion.div
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 80 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
+      style={{ y: yParallax }}
       transition={{
         duration: 0.7,
         delay: index * 0.15,
