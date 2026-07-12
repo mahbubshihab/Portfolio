@@ -4,7 +4,14 @@ import React, { useState, useRef } from "react";
 import { motion, useMotionValue, useTransform, useMotionTemplate, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Code2, Smartphone, Database, Bot, Film, Zap, Terminal, Sparkles, FolderIcon, FileCode, CheckCircle2 } from "lucide-react";
-import { SiDavinciresolve, SiReact, SiNextdotjs, SiVuedotjs, SiTailwindcss, SiFlutter, SiSwift, SiKotlin, SiDart, SiNodedotjs, SiFirebase, SiSupabase, SiPostgresql, SiHuggingface } from "react-icons/si";
+import { 
+  SiDavinciresolve, SiReact, SiNextdotjs, SiVuedotjs, SiTailwindcss, SiFlutter, 
+  SiSwift, SiKotlin, SiDart, SiNodedotjs, SiFirebase, SiSupabase, 
+  SiPostgresql, SiHuggingface, SiHtml5, SiCss, SiJavascript, 
+  SiTypescript, SiVite, SiNestjs, SiExpress, SiPython, SiMongodb, 
+  SiMysql, SiAndroidstudio, SiIntellijidea, 
+  SiGit, SiGithub, SiFigma, SiPostman, SiDocker
+} from "react-icons/si";
 
 const PremiereIcon = () => (
   <div className="w-[20px] h-[20px] rounded-[4px] bg-[#00005c] border border-[#3fa9f5] flex items-center justify-center text-[10px] font-bold text-[#3fa9f5] select-none hover:scale-125 transition-transform duration-300 cursor-pointer" title="Premiere Pro">
@@ -18,19 +25,52 @@ const AfterEffectsIcon = () => (
   </div>
 );
 
+const VscodeIcon = () => (
+  <svg 
+    width="18" 
+    height="18" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg" 
+    className="hover:scale-125 transition-transform duration-300 cursor-pointer" 
+  >
+    <title>VS Code</title>
+    <path d="M23.985 6.809a.537.537 0 00-.265-.395L18.497.834a.547.547 0 00-.518.004L9.121 5.234 2.923 1.256a.542.542 0 00-.74.165L.085 4.757a.54.54 0 00.12.72L4.54 8.87.192 12.43a.54.54 0 00-.113.725l2.034 3.328a.542.542 0 00.74.167l6.27-3.98 8.856 4.402a.547.547 0 00.518.004l5.218-5.397a.537.537 0 00.267-.396V6.809z" fill="#007ACC"/>
+  </svg>
+);
+
+const OpenaiIcon = () => (
+  <svg 
+    width="18" 
+    height="18" 
+    viewBox="0 0 24 24" 
+    fill="currentColor" 
+    xmlns="http://www.w3.org/2000/svg" 
+    className="hover:scale-125 transition-transform duration-300 cursor-pointer text-[#74AA9C]" 
+  >
+    <title>OpenAI</title>
+    <path d="M23.5 12.062a5.55 5.55 0 00-2.738-4.803 5.48 5.48 0 00.767-2.616 5.568 5.568 0 00-4.997-5.523 5.55 5.55 0 00-3.535 1.282A5.566 5.566 0 0010.5 0c-2.3 0-4.322 1.402-5.176 3.49A5.554 5.554 0 001.79 4.757 5.567 5.567 0 001.023 7.38 5.55 5.55 0 003.76 12.18a5.482 5.482 0 00-.767 2.617 5.568 5.568 0 004.996 5.522 5.55 5.55 0 003.535-1.282 5.566 5.566 0 002.502 2.964c2.3 0 4.321-1.402 5.176-3.49a5.554 5.554 0 003.535-1.267 5.567 5.567 0 00.767-2.624 5.55 5.55 0 00-2.738-4.802z"/>
+  </svg>
+);
+
 const SKILLS = [
   {
     title: "Web Development",
     icon: <Code2 size={24} className="text-primary" />,
-    tech: "React, Next.js, Vue, Tailwind CSS",
+    tech: "React, Next.js, Vue, Vite, HTML5, CSS3, JS, TS, Tailwind CSS",
     description: "Building responsive, dynamic, and highly accessible user interfaces.",
     borderColor: "from-cyan-500/30 to-blue-500/10",
     extraIcons: (
-      <div className="flex gap-3 mt-4 items-center">
-        <SiReact size={20} color="#61DAFB" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="React.js" />
-        <SiNextdotjs size={20} color="#ffffff" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Next.js" />
-        <SiVuedotjs size={20} color="#4FC08D" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Vue.js" />
-        <SiTailwindcss size={20} color="#38BDF8" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Tailwind CSS" />
+      <div className="flex flex-wrap gap-2.5 mt-4 items-center">
+        <SiReact size={18} color="#61DAFB" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="React.js" />
+        <SiNextdotjs size={18} color="#ffffff" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Next.js" />
+        <SiVuedotjs size={18} color="#4FC08D" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Vue.js" />
+        <SiVite size={18} color="#646CFF" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Vite" />
+        <SiHtml5 size={18} color="#E34F26" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="HTML5" />
+        <SiCss size={18} color="#1572B6" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="CSS3" />
+        <SiJavascript size={18} color="#F7DF1E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="JavaScript" />
+        <SiTypescript size={18} color="#3178C6" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="TypeScript" />
+        <SiTailwindcss size={18} color="#38BDF8" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Tailwind CSS" />
       </div>
     )
   },
@@ -41,38 +81,44 @@ const SKILLS = [
     description: "Developing cross-platform and native mobile experiences.",
     borderColor: "from-purple-500/30 to-pink-500/10",
     extraIcons: (
-      <div className="flex gap-3 mt-4 items-center">
-        <SiFlutter size={20} color="#45D1FD" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Flutter" />
-        <SiSwift size={20} color="#F05138" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Swift" />
-        <SiKotlin size={20} color="#7F52FF" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Kotlin" />
-        <SiDart size={20} color="#0175C2" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Dart" />
+      <div className="flex flex-wrap gap-2.5 mt-4 items-center">
+        <SiFlutter size={18} color="#45D1FD" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Flutter" />
+        <SiSwift size={18} color="#F05138" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Swift" />
+        <SiKotlin size={18} color="#7F52FF" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Kotlin" />
+        <SiDart size={18} color="#0175C2" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Dart" />
       </div>
     )
   },
   {
     title: "Backend & Cloud",
     icon: <Database size={24} className="text-primary" />,
-    tech: "Node.js, Firebase, Supabase, Postgres",
+    tech: "Node.js, NestJS, Express, Python, Firebase, Supabase, Postgres, Mongo, MySQL",
     description: "Designing secure, serverless architectures and robust databases.",
     borderColor: "from-blue-500/30 to-indigo-500/10",
     extraIcons: (
-      <div className="flex gap-3 mt-4 items-center">
-        <SiNodedotjs size={20} color="#339933" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Node.js" />
-        <SiFirebase size={20} color="#FFCA28" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Firebase" />
-        <SiSupabase size={20} color="#3ECF8E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Supabase" />
-        <SiPostgresql size={20} color="#4169E1" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="PostgreSQL" />
+      <div className="flex flex-wrap gap-2.5 mt-4 items-center">
+        <SiNodedotjs size={18} color="#339933" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Node.js" />
+        <SiNestjs size={18} color="#E0234E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="NestJS" />
+        <SiExpress size={18} color="#ffffff" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Express" />
+        <SiPython size={18} color="#3776AB" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Python" />
+        <SiFirebase size={18} color="#FFCA28" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Firebase" />
+        <SiSupabase size={18} color="#3ECF8E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Supabase" />
+        <SiPostgresql size={18} color="#4169E1" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="PostgreSQL" />
+        <SiMongodb size={18} color="#47A248" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="MongoDB" />
+        <SiMysql size={18} color="#4479A1" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="MySQL" />
       </div>
     )
   },
   {
     title: "AI & Automation",
     icon: <Bot size={24} className="text-primary" />,
-    tech: "LLMs, Custom Agents, AI Integration",
+    tech: "OpenAI, LLMs, HuggingFace, Custom Agents, Automation",
     description: "Connecting AI models into production and automating workflows.",
     borderColor: "from-pink-500/30 to-violet-500/10",
     extraIcons: (
-      <div className="flex gap-3 mt-4 items-center">
-        <SiHuggingface size={20} color="#FFD21E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Hugging Face" />
+      <div className="flex flex-wrap gap-2.5 mt-4 items-center">
+        <OpenaiIcon />
+        <SiHuggingface size={18} color="#FFD21E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Hugging Face" />
       </div>
     )
   },
@@ -83,19 +129,31 @@ const SKILLS = [
     description: "High-end video editing and digital marketing. Prompt engineering for AI media pipelines.",
     borderColor: "from-orange-500/30 to-red-500/10",
     extraIcons: (
-      <div className="flex gap-3 mt-4 items-center">
+      <div className="flex flex-wrap gap-2.5 mt-4 items-center">
         <PremiereIcon />
         <AfterEffectsIcon />
-        <SiDavinciresolve size={20} color="#FF9933" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="DaVinci Resolve" />
+        <SiDavinciresolve size={18} color="#FF9933" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="DaVinci Resolve" />
       </div>
     )
   },
   {
-    title: "Core Philosophy",
+    title: "IDEs, Version Control & Tools",
     icon: <Zap size={24} className="text-primary" />,
-    tech: "Quick Learner & Adaptable",
-    description: "A highly versatile engineer with the ability to master new technologies and paradigms at an accelerated pace.",
-    borderColor: "from-yellow-500/30 to-amber-500/10"
+    tech: "VS Code, Android Studio, IntelliJ, Git, GitHub, Figma, Postman, Docker",
+    description: "Configuring development workflows, container orchestration, and UI design platforms.",
+    borderColor: "from-yellow-500/30 to-amber-500/10",
+    extraIcons: (
+      <div className="flex flex-wrap gap-2.5 mt-4 items-center">
+        <VscodeIcon />
+        <SiAndroidstudio size={18} color="#3DDC84" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Android Studio" />
+        <SiIntellijidea size={18} color="#FE315D" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="IntelliJ IDEA" />
+        <SiGit size={18} color="#F05032" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Git" />
+        <SiGithub size={18} color="#ffffff" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="GitHub" />
+        <SiFigma size={18} color="#F24E1E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Figma" />
+        <SiPostman size={18} color="#FF6C37" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Postman" />
+        <SiDocker size={18} color="#2496ED" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Docker" />
+      </div>
+    )
   }
 ];
 
