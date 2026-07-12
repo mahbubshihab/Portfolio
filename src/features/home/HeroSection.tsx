@@ -132,7 +132,7 @@ export function HeroSection() {
             {[
               { icon: FaGithub, href: "https://github.com/mahbubshihab", label: "GitHub" },
               { icon: FaLinkedin, href: "https://linkedin.com/in/mahbubshihab", label: "LinkedIn" },
-              { icon: Mail, href: "mailto:contact@mahbub.dev", label: "Email" }
+              { icon: Mail, href: "mailto:contact@mahbubshihab.com", label: "Email" }
             ].map((social, i) => (
               <motion.a 
                 whileHover={{ scale: 1.15, y: -4 }}

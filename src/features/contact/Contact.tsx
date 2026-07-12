@@ -60,7 +60,7 @@ export function Contact() {
 
             {/* Email Card */}
             <motion.a
-              href="mailto:contact@mahbub.dev"
+              href="mailto:contact@mahbubshihab.com"
               whileHover={{ y: -4 }}
               transition={{ duration: 0.3 }}
               className="group relative rounded-2xl border border-primary/20 bg-secondary/15 p-6 flex items-center justify-between hover:border-primary/50 transition-colors shadow-lg overflow-hidden cursor-pointer"
@@ -72,7 +72,7 @@ export function Contact() {
                 </div>
                 <div>
                   <span className="text-[10px] font-mono text-primary font-bold uppercase tracking-widest block">Email Mailbox</span>
-                  <span className="text-base font-semibold text-foreground/90 font-mono">contact@mahbub.dev</span>
+                  <span className="text-base font-semibold text-foreground/90 font-mono">contact@mahbubshihab.com</span>
                 </div>
               </div>
               <ArrowUpRight size={16} className="text-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />

@@ -41,7 +41,7 @@ export function Footer() {
             <FaTwitter size={20} />
           </a>
           <a
-            href="mailto:contact@mahbub.dev"
+            href="mailto:contact@mahbubshihab.com"
             className="p-2 text-foreground/70 hover:text-primary transition-colors bg-secondary rounded-full hover:bg-secondary/80"
           >
             <Mail size={20} />
