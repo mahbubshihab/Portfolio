@@ -2,61 +2,99 @@
 
 import { useRef } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
-import { Code2, Smartphone, Database, Bot } from "lucide-react";
+import {
+  FaReact, FaNodeJs, FaDocker, FaPython, FaSwift, FaAndroid, FaDatabase, FaAws,
+} from "react-icons/fa";
+import {
+  SiNextdotjs, SiTypescript, SiTailwindcss, SiFlutter, SiKotlin,
+  SiPostgresql, SiMongodb, SiGraphql, SiTensorflow,
+  SiFirebase, SiRedis,
+} from "react-icons/si";
+import { Brain } from "lucide-react";
 import { WaveDivider } from "./WaveDivider";
 
 const SERVICES = [
   {
-    icon: Code2,
+    icon: "🌐",
     title: "Web Development",
-    desc: "Building highly scalable, interactive, and responsive web applications using React, Next.js, and modern CSS frameworks.",
-    color: "from-blue-500 to-cyan-500",
-    shadow: "shadow-blue-500/30"
+    desc: "Crafting blazing-fast, pixel-perfect web experiences with cutting-edge frameworks and responsive design systems.",
+    color: "from-cyan-400 via-blue-500 to-indigo-600",
+    glowColor: "rgba(56, 189, 248, 0.15)",
+    borderColor: "from-cyan-400/60 to-indigo-500/60",
+    skills: [
+      { icon: FaReact, name: "React", color: "#61DAFB" },
+      { icon: SiNextdotjs, name: "Next.js", color: "#ffffff" },
+      { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
+      { icon: SiTailwindcss, name: "Tailwind", color: "#06B6D4" },
+    ],
   },
   {
-    icon: Smartphone,
-    title: "Mobile App Development",
-    desc: "Creating seamless cross-platform and native experiences using Flutter, Swift, and Kotlin for iOS and Android.",
-    color: "from-violet-500 to-purple-500",
-    shadow: "shadow-violet-500/30"
+    icon: "📱",
+    title: "Mobile Apps",
+    desc: "Delivering smooth, native-feel mobile experiences across iOS & Android with a single codebase approach.",
+    color: "from-violet-400 via-purple-500 to-fuchsia-600",
+    glowColor: "rgba(167, 139, 250, 0.15)",
+    borderColor: "from-violet-400/60 to-fuchsia-500/60",
+    skills: [
+      { icon: SiFlutter, name: "Flutter", color: "#02569B" },
+      { icon: FaSwift, name: "Swift", color: "#F05138" },
+      { icon: SiKotlin, name: "Kotlin", color: "#7F52FF" },
+      { icon: FaAndroid, name: "Android", color: "#3DDC84" },
+    ],
   },
   {
-    icon: Database,
-    title: "Backend Engineering",
-    desc: "Designing robust APIs and database architectures with Node.js, Python, and PostgreSQL.",
-    color: "from-emerald-500 to-teal-500",
-    shadow: "shadow-emerald-500/30"
+    icon: "⚙️",
+    title: "Backend & Cloud",
+    desc: "Architecting scalable APIs, microservices, and cloud infrastructure that handles millions of requests seamlessly.",
+    color: "from-emerald-400 via-teal-500 to-green-600",
+    glowColor: "rgba(52, 211, 153, 0.15)",
+    borderColor: "from-emerald-400/60 to-green-500/60",
+    skills: [
+      { icon: FaNodeJs, name: "Node.js", color: "#339933" },
+      { icon: FaPython, name: "Python", color: "#3776AB" },
+      { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
+      { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
+      { icon: SiGraphql, name: "GraphQL", color: "#E10098" },
+      { icon: SiRedis, name: "Redis", color: "#DC382D" },
+    ],
   },
   {
-    icon: Bot,
-    title: "AI Integration",
-    desc: "Implementing intelligent features, chatbots, and LLM wrappers into modern digital products.",
-    color: "from-orange-500 to-amber-500",
-    shadow: "shadow-orange-500/30"
-  }
+    icon: "🤖",
+    title: "AI & Automation",
+    desc: "Integrating intelligent AI features—from chatbots to custom ML pipelines—turning data into actionable insights.",
+    color: "from-amber-400 via-orange-500 to-rose-600",
+    glowColor: "rgba(251, 191, 36, 0.15)",
+    borderColor: "from-amber-400/60 to-rose-500/60",
+    skills: [
+      { icon: Brain, name: "LLMs", color: "#10B981" },
+      { icon: SiTensorflow, name: "TensorFlow", color: "#FF6F00" },
+      { icon: FaAws, name: "AWS", color: "#FF9900" },
+      { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
+    ],
+  },
 ];
 
-function TiltCard({ service, index }: { service: typeof SERVICES[0], index: number }) {
+function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
 
-  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 20 });
-  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 20 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
-  const background = useMotionTemplate`radial-gradient(400px circle at ${mouseXSpring}px ${mouseYSpring}px, rgba(255,255,255,0.1), transparent 80%)`;
+  const springX = useSpring(mouseX, { stiffness: 200, damping: 25 });
+  const springY = useSpring(mouseY, { stiffness: 200, damping: 25 });
+
+  const spotlight = useMotionTemplate`radial-gradient(350px circle at ${springX}px ${springY}px, ${service.glowColor}, transparent 80%)`;
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
-    x.set(e.clientX - rect.left);
-    y.set(e.clientY - rect.top);
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
   }
 
   function handleMouseLeave() {
-    x.set(0);
-    y.set(0);
+    mouseX.set(ref.current ? ref.current.offsetWidth / 2 : 0);
+    mouseY.set(ref.current ? ref.current.offsetHeight / 2 : 0);
   }
 
   return (
@@ -64,25 +102,64 @@ function TiltCard({ service, index }: { service: typeof SERVICES[0], index: numb
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      initial={{ opacity: 0, y: 150, scale: 0.8, rotateX: -30, rotateY: index % 2 === 0 ? -15 : 15 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1, rotateX: 0, rotateY: 0 }}
-      viewport={{ once: false, margin: "-100px" }}
-      transition={{ duration: 1.2, delay: index * 0.2, type: "spring", stiffness: 50, damping: 20 }}
-      className="group relative p-1 rounded-3xl bg-gradient-to-b from-border/60 to-transparent hover:from-primary/60 hover:to-accent/60 transition-colors duration-500 overflow-hidden"
+      initial={{ opacity: 0, y: 80 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.15,
+        type: "spring",
+        stiffness: 80,
+        damping: 20,
+      }}
+      className="group relative rounded-3xl overflow-hidden"
     >
-      <motion.div 
-        className="absolute inset-0 z-0 pointer-events-none"
-        style={{ background }}
+      {/* Animated gradient border */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${service.borderColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      <div className="absolute inset-[1px] bg-gradient-to-b from-border/40 to-transparent rounded-3xl group-hover:opacity-0 transition-opacity duration-500" />
+
+      {/* Spotlight effect */}
+      <motion.div
+        className="absolute inset-0 z-0 pointer-events-none rounded-3xl"
+        style={{ background: spotlight }}
       />
-      
-      <div className="h-full bg-secondary/90 backdrop-blur-xl rounded-[1.4rem] p-8 flex flex-col items-start transition-transform duration-500 group-hover:-translate-y-2 relative z-10">
-        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br ${service.color} mb-8 text-white shadow-xl ${service.shadow} transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
-          <service.icon className="w-8 h-8" />
+
+      {/* Card content */}
+      <div className="relative z-10 h-full bg-secondary/80 backdrop-blur-xl rounded-[calc(1.5rem-1px)] m-[1px] p-8 flex flex-col">
+        {/* Emoji icon with glow */}
+        <div className="relative mb-6">
+          <div className={`absolute inset-0 w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500`} />
+          <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-3xl shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3`}>
+            {service.icon}
+          </div>
         </div>
-        <h3 className="text-2xl font-bold text-foreground mb-4">{service.title}</h3>
-        <p className="text-secondary-foreground text-base leading-relaxed flex-grow">
+
+        {/* Title */}
+        <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 tracking-tight">
+          {service.title}
+        </h3>
+
+        {/* Description */}
+        <p className="text-secondary-foreground/80 text-sm md:text-base leading-relaxed mb-6 flex-grow">
           {service.desc}
         </p>
+
+        {/* Divider */}
+        <div className={`w-full h-px bg-gradient-to-r ${service.borderColor} opacity-30 mb-5`} />
+
+        {/* Tech Skills */}
+        <div className="flex flex-wrap gap-2">
+          {service.skills.map((skill) => (
+            <motion.div
+              key={skill.name}
+              whileHover={{ scale: 1.1, y: -2 }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-background/60 border border-border/40 text-xs font-medium text-secondary-foreground hover:border-primary/50 hover:text-foreground transition-colors duration-300 cursor-default"
+            >
+              <skill.icon className="w-3.5 h-3.5 shrink-0" style={{ color: skill.color }} />
+              <span>{skill.name}</span>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
@@ -92,34 +169,47 @@ export function ServicesSection() {
   return (
     <section className="pt-32 pb-40 px-6 relative bg-background">
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="text-center mb-24">
+        {/* Section Header */}
+        <div className="text-center mb-20">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: false }}
-            transition={{ duration: 0.8, type: "spring" }}
-            className="inline-block relative mb-6"
-          >
-            <div className="absolute inset-0 bg-accent/5 blur-2xl rounded-full" />
-            <h2 className="relative text-5xl md:text-7xl font-extrabold tracking-tighter">
-              What I Do
-            </h2>
-          </motion.div>
-          
-          <motion.p 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-secondary-foreground max-w-2xl mx-auto text-lg md:text-xl font-light"
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-semibold tracking-wider uppercase mb-6"
           >
-            Crafting premium digital solutions with modern technologies and clean architecture to bring your ideas to life.
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            Services
+          </motion.div>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-6"
+          >
+            What I{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-accent">
+              Build
+            </span>
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-secondary-foreground/70 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed"
+          >
+            From concept to production — I deliver end-to-end solutions with modern tech stacks and pixel-perfect execution.
           </motion.p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-[1500px]">
+        {/* Service Cards Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SERVICES.map((service, i) => (
-            <TiltCard key={service.title} service={service} index={i} />
+            <ServiceCard key={service.title} service={service} index={i} />
           ))}
         </div>
       </div>

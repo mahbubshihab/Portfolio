@@ -22,13 +22,13 @@ export function TypewriterSVG() {
         }
       `}</style>
       <path id="path0" d="m0,40 h0">
-        <animate attributeName="d" begin="0s;d3.end" dur="6000ms" fill="remove" values="m0,40 h0 ; m0,40 h600 ; m0,40 h600 ; m0,40 h0" keyTimes="0;0.66666666666667;0.83333333333333;1" />
+<animate attributeName="d" begin="0s" dur="6000ms" fill="freeze" values="m0,40 h0 ; m0,40 h600 ; m0,40 h600 ; m0,40 h0" keyTimes="0;0.66666666666667;0.83333333333333;1" />
       </path>
       <text fontFamily="'Fira Code', monospace" fill="var(--primary)" fontSize="32" dominantBaseline="middle" x="50%" textAnchor="middle" letterSpacing="normal">
         <textPath xlinkHref="#path0">Hi there, I'm Mahbub Shihab</textPath>
       </text>
       <path id="path1" d="m0,40 h0">
-        <animate attributeName="d" begin="d0.end" dur="6000ms" fill="remove" values="m0,40 h0 ; m0,40 h600 ; m0,40 h600 ; m0,40 h0" keyTimes="0;0.66666666666667;0.83333333333333;1" />
+        <animate attributeName="d" begin="d0.end" dur="6000ms" fill="freeze" values="m0,40 h0 ; m0,40 h600 ; m0,40 h600 ; m0,40 h0" keyTimes="0;0.66666666666667;0.83333333333333;1" />
       </path>
       <text fontFamily="'Fira Code', monospace" fill="var(--primary)" fontSize="32" dominantBaseline="middle" x="50%" textAnchor="middle" letterSpacing="normal">
         <textPath xlinkHref="#path1">Full-Stack Web &amp; App Developer</textPath>
