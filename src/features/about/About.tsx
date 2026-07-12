@@ -7,13 +7,13 @@ import { Code2, Smartphone, Database, Bot, Film, Zap, Terminal, Sparkles, Folder
 import { SiDavinciresolve, SiReact, SiNextdotjs, SiVuedotjs, SiTailwindcss, SiFlutter, SiSwift, SiKotlin, SiDart, SiNodedotjs, SiFirebase, SiSupabase, SiPostgresql, SiHuggingface } from "react-icons/si";
 
 const PremiereIcon = () => (
-  <div className="w-[18px] h-[18px] rounded-[3px] bg-[#14002a] border border-[#9999FF] flex items-center justify-center text-[10px] font-bold text-[#9999FF] select-none" title="Premiere Pro">
+  <div className="w-[20px] h-[20px] rounded-[4px] bg-[#00005c] border border-[#3fa9f5] flex items-center justify-center text-[10px] font-bold text-[#3fa9f5] select-none hover:scale-125 transition-transform duration-300 cursor-pointer" title="Premiere Pro">
     Pr
   </div>
 );
 
 const AfterEffectsIcon = () => (
-  <div className="w-[18px] h-[18px] rounded-[3px] bg-[#14002a] border border-[#D199FF] flex items-center justify-center text-[10px] font-bold text-[#D199FF] select-none" title="After Effects">
+  <div className="w-[20px] h-[20px] rounded-[4px] bg-[#00005c] border border-[#d199ff] flex items-center justify-center text-[10px] font-bold text-[#d199ff] select-none hover:scale-125 transition-transform duration-300 cursor-pointer" title="After Effects">
     Ae
   </div>
 );
@@ -26,11 +26,11 @@ const SKILLS = [
     description: "Building responsive, dynamic, and highly accessible user interfaces.",
     borderColor: "from-cyan-500/30 to-blue-500/10",
     extraIcons: (
-      <div className="flex gap-2.5 mt-3 text-foreground/60 items-center">
-        <SiReact size={18} className="hover:text-primary transition-colors cursor-pointer" title="React.js" />
-        <SiNextdotjs size={18} className="hover:text-primary transition-colors cursor-pointer" title="Next.js" />
-        <SiVuedotjs size={18} className="hover:text-primary transition-colors cursor-pointer" title="Vue.js" />
-        <SiTailwindcss size={18} className="hover:text-primary transition-colors cursor-pointer" title="Tailwind CSS" />
+      <div className="flex gap-3 mt-4 items-center">
+        <SiReact size={20} color="#61DAFB" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="React.js" />
+        <SiNextdotjs size={20} color="#ffffff" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Next.js" />
+        <SiVuedotjs size={20} color="#4FC08D" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Vue.js" />
+        <SiTailwindcss size={20} color="#38BDF8" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Tailwind CSS" />
       </div>
     )
   },
@@ -41,11 +41,11 @@ const SKILLS = [
     description: "Developing cross-platform and native mobile experiences.",
     borderColor: "from-purple-500/30 to-pink-500/10",
     extraIcons: (
-      <div className="flex gap-2.5 mt-3 text-foreground/60 items-center">
-        <SiFlutter size={18} className="hover:text-primary transition-colors cursor-pointer" title="Flutter" />
-        <SiSwift size={18} className="hover:text-primary transition-colors cursor-pointer" title="Swift" />
-        <SiKotlin size={18} className="hover:text-primary transition-colors cursor-pointer" title="Kotlin" />
-        <SiDart size={18} className="hover:text-primary transition-colors cursor-pointer" title="Dart" />
+      <div className="flex gap-3 mt-4 items-center">
+        <SiFlutter size={20} color="#45D1FD" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Flutter" />
+        <SiSwift size={20} color="#F05138" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Swift" />
+        <SiKotlin size={20} color="#7F52FF" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Kotlin" />
+        <SiDart size={20} color="#0175C2" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Dart" />
       </div>
     )
   },
@@ -56,11 +56,11 @@ const SKILLS = [
     description: "Designing secure, serverless architectures and robust databases.",
     borderColor: "from-blue-500/30 to-indigo-500/10",
     extraIcons: (
-      <div className="flex gap-2.5 mt-3 text-foreground/60 items-center">
-        <SiNodedotjs size={18} className="hover:text-primary transition-colors cursor-pointer" title="Node.js" />
-        <SiFirebase size={18} className="hover:text-primary transition-colors cursor-pointer" title="Firebase" />
-        <SiSupabase size={18} className="hover:text-primary transition-colors cursor-pointer" title="Supabase" />
-        <SiPostgresql size={18} className="hover:text-primary transition-colors cursor-pointer" title="PostgreSQL" />
+      <div className="flex gap-3 mt-4 items-center">
+        <SiNodedotjs size={20} color="#339933" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Node.js" />
+        <SiFirebase size={20} color="#FFCA28" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Firebase" />
+        <SiSupabase size={20} color="#3ECF8E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Supabase" />
+        <SiPostgresql size={20} color="#4169E1" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="PostgreSQL" />
       </div>
     )
   },
@@ -71,8 +71,8 @@ const SKILLS = [
     description: "Connecting AI models into production and automating workflows.",
     borderColor: "from-pink-500/30 to-violet-500/10",
     extraIcons: (
-      <div className="flex gap-2.5 mt-3 text-foreground/60 items-center">
-        <SiHuggingface size={18} className="hover:text-primary transition-colors cursor-pointer" title="Hugging Face" />
+      <div className="flex gap-3 mt-4 items-center">
+        <SiHuggingface size={20} color="#FFD21E" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Hugging Face" />
       </div>
     )
   },
@@ -83,10 +83,10 @@ const SKILLS = [
     description: "High-end video editing and digital marketing. Prompt engineering for AI media pipelines.",
     borderColor: "from-orange-500/30 to-red-500/10",
     extraIcons: (
-      <div className="flex gap-2.5 mt-3 text-foreground/60 items-center">
+      <div className="flex gap-3 mt-4 items-center">
         <PremiereIcon />
         <AfterEffectsIcon />
-        <SiDavinciresolve size={18} className="hover:text-[#FF9933] transition-colors cursor-pointer" title="DaVinci Resolve" />
+        <SiDavinciresolve size={20} color="#FF9933" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="DaVinci Resolve" />
       </div>
     )
   },
