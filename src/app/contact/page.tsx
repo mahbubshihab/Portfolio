@@ -11,7 +11,7 @@ interface LogEntry {
 }
 
 export default function ContactPage() {
-  const [useTerminal, setUseTerminal] = useState(true);
+  const [useTerminal, setUseTerminal] = useState(false);
   const [history, setHistory] = useState<LogEntry[]>([
     {
       input: "system.init()",
