@@ -17,8 +17,6 @@ export function BottomCTA() {
 
   return (
     <div className="relative">
-      <WaveDivider className="top-0 -translate-y-full" fill="fill-secondary" inverted={false} />
-      
       <section className="bg-secondary pt-24 pb-48 text-center px-6 relative z-10 overflow-hidden">
         {/* Animated Background Mesh / Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:32px_32px] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_70%,transparent_100%)]" />
@@ -100,6 +98,9 @@ export function BottomCTA() {
           </div>
         </motion.div>
       </section>
+      
+      {/* Smooth transition into Footer */}
+      <WaveDivider className="bottom-0 translate-y-px" fill="fill-background" inverted={true} />
     </div>
   );
 }
