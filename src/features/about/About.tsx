@@ -241,26 +241,6 @@ export function About() {
                 <div className="absolute inset-[1px] border border-white/10 rounded-3xl pointer-events-none group-hover:border-primary/30 transition-colors duration-500" />
               </motion.div>
             </div>
-
-            {/* Counter Metrics Grid */}
-            <div className="grid grid-cols-2 gap-4 w-full mt-8">
-              <div className="p-5 rounded-2xl bg-secondary/10 border border-border/40 backdrop-blur-md">
-                <span className="block text-3xl font-black text-primary font-mono">5+</span>
-                <span className="text-xs text-foreground/50 uppercase tracking-widest mt-1 block">Years Coding</span>
-              </div>
-              <div className="p-5 rounded-2xl bg-secondary/10 border border-border/40 backdrop-blur-md">
-                <span className="block text-3xl font-black text-accent font-mono">30+</span>
-                <span className="text-xs text-foreground/50 uppercase tracking-widest mt-1 block">Projects Shipped</span>
-              </div>
-              <div className="p-5 rounded-2xl bg-secondary/10 border border-border/40 backdrop-blur-md">
-                <span className="block text-3xl font-black text-fuchsia-500 font-mono">100%</span>
-                <span className="text-xs text-foreground/50 uppercase tracking-widest mt-1 block">Success Rate</span>
-              </div>
-              <div className="p-5 rounded-2xl bg-secondary/10 border border-border/40 backdrop-blur-md">
-                <span className="block text-3xl font-black text-yellow-500 font-mono">B.Sc.</span>
-                <span className="text-xs text-foreground/50 uppercase tracking-widest mt-1 block">CE Logic</span>
-              </div>
-            </div>
           </div>
 
           {/* Right Column: Code Terminal System */}
