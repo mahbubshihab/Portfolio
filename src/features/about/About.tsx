@@ -56,10 +56,11 @@ const OpenaiIcon = () => (
 const SKILLS = [
   {
     title: "Web Development",
-    icon: <Code2 size={24} className="text-primary" />,
+    icon: Code2,
     tech: "React, Next.js, Vue, Vite, HTML5, CSS3, JS, TS, Tailwind CSS",
     description: "Building responsive, dynamic, and highly accessible user interfaces.",
-    borderColor: "from-cyan-500/30 to-blue-500/10",
+    color: "from-cyan-400 via-blue-500 to-indigo-600",
+    borderColor: "from-cyan-400/60 to-indigo-500/60",
     extraIcons: (
       <div className="flex flex-wrap gap-2.5 mt-4 items-center">
         <SiReact size={18} color="#61DAFB" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="React.js" />
@@ -76,10 +77,11 @@ const SKILLS = [
   },
   {
     title: "Mobile Apps",
-    icon: <Smartphone size={24} className="text-primary" />,
+    icon: Smartphone,
     tech: "Flutter, Swift, Kotlin, Dart",
     description: "Developing cross-platform and native mobile experiences.",
-    borderColor: "from-purple-500/30 to-pink-500/10",
+    color: "from-violet-400 via-purple-500 to-fuchsia-600",
+    borderColor: "from-violet-400/60 to-fuchsia-500/60",
     extraIcons: (
       <div className="flex flex-wrap gap-2.5 mt-4 items-center">
         <SiFlutter size={18} color="#45D1FD" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Flutter" />
@@ -91,10 +93,11 @@ const SKILLS = [
   },
   {
     title: "Backend & Cloud",
-    icon: <Database size={24} className="text-primary" />,
+    icon: Database,
     tech: "Node.js, NestJS, Express, Python, Firebase, Supabase, Postgres, Mongo, MySQL",
     description: "Designing secure, serverless architectures and robust databases.",
-    borderColor: "from-blue-500/30 to-indigo-500/10",
+    color: "from-emerald-400 via-teal-500 to-green-600",
+    borderColor: "from-emerald-400/60 to-green-500/60",
     extraIcons: (
       <div className="flex flex-wrap gap-2.5 mt-4 items-center">
         <SiNodedotjs size={18} color="#339933" className="hover:scale-125 transition-transform duration-300 cursor-pointer" title="Node.js" />
@@ -111,10 +114,11 @@ const SKILLS = [
   },
   {
     title: "AI & Automation",
-    icon: <Bot size={24} className="text-primary" />,
+    icon: Bot,
     tech: "OpenAI, LLMs, HuggingFace, Custom Agents, Automation",
     description: "Connecting AI models into production and automating workflows.",
-    borderColor: "from-pink-500/30 to-violet-500/10",
+    color: "from-amber-400 via-orange-500 to-rose-600",
+    borderColor: "from-amber-400/60 to-rose-500/60",
     extraIcons: (
       <div className="flex flex-wrap gap-2.5 mt-4 items-center">
         <OpenaiIcon />
@@ -124,10 +128,11 @@ const SKILLS = [
   },
   {
     title: "Creative Production",
-    icon: <Film size={24} className="text-primary" />,
+    icon: Film,
     tech: "Premiere Pro, After Effects, DaVinci Resolve",
     description: "High-end video editing and digital marketing. Prompt engineering for AI media pipelines.",
-    borderColor: "from-orange-500/30 to-red-500/10",
+    color: "from-fuchsia-400 via-pink-500 to-rose-600",
+    borderColor: "from-fuchsia-400/60 to-rose-500/60",
     extraIcons: (
       <div className="flex flex-wrap gap-2.5 mt-4 items-center">
         <PremiereIcon />
@@ -138,10 +143,11 @@ const SKILLS = [
   },
   {
     title: "IDEs, Version Control & Tools",
-    icon: <Zap size={24} className="text-primary" />,
+    icon: Zap,
     tech: "VS Code, Android Studio, IntelliJ, Git, GitHub, Figma, Postman, Docker",
     description: "Configuring development workflows, container orchestration, and UI design platforms.",
-    borderColor: "from-yellow-500/30 to-amber-500/10",
+    color: "from-yellow-400 via-amber-500 to-orange-600",
+    borderColor: "from-yellow-500/30 to-orange-500/60",
     extraIcons: (
       <div className="flex flex-wrap gap-2.5 mt-4 items-center">
         <VscodeIcon />
@@ -486,29 +492,40 @@ export function About() {
 
         {/* Skills Cards Grid - Spotlight card border hover effects */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SKILLS.map((skill, index) => (
-            <motion.div
-              key={skill.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.7, delay: index * 0.08, type: "spring", stiffness: 60, damping: 15 }}
-              className="group relative p-8 rounded-3xl bg-secondary/15 border border-border/50 hover:border-primary/45 transition-all hover:-translate-y-1.5 duration-500 overflow-hidden"
-            >
-              {/* Inner Spotlight color pulse */}
-              <div className={`absolute -inset-px rounded-3xl bg-gradient-to-br ${skill.borderColor} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-[2px] pointer-events-none -z-10`} />
-              <div className="absolute inset-[1px] bg-[#07051a]/90 rounded-3xl -z-10" />
+          {SKILLS.map((skill, index) => {
+            const IconComponent = skill.icon;
+            return (
+              <div key={skill.title} style={{ perspective: 1200 }} className="w-full h-full">
+                <motion.div
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.7, delay: index * 0.08, type: "spring", stiffness: 60, damping: 15 }}
+                  className="group relative rounded-3xl overflow-hidden h-full"
+                >
+                  {/* Animated gradient border */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${skill.borderColor} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                  <div className="absolute inset-[1px] bg-gradient-to-b from-border/40 to-transparent rounded-3xl group-hover:opacity-0 transition-opacity duration-500" />
 
-              <div className="mb-5 p-3 rounded-2xl bg-slate-900/80 inline-block border border-border/60 group-hover:border-primary/40 transition-colors shadow-lg">
-                {skill.icon}
+                  {/* Card content */}
+                  <div className="relative z-10 h-full bg-secondary/80 backdrop-blur-xl rounded-[calc(1.5rem-1px)] m-[1px] p-8 flex flex-col">
+                    {/* Lucide icon with glow */}
+                    <div className="relative mb-6">
+                      <div className={`absolute inset-0 w-16 h-16 bg-gradient-to-br ${skill.color} rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500`} />
+                      <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${skill.color} flex items-center justify-center text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3`}>
+                        <IconComponent className="w-8 h-8 text-white" />
+                      </div>
+                    </div>
+
+                    <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3 tracking-tight group-hover:text-primary transition-colors">{skill.title}</h3>
+                    <p className="text-[11px] font-mono text-primary/80 mb-4 uppercase tracking-widest">{skill.tech}</p>
+                    <p className="text-foreground/70 text-sm leading-relaxed font-light flex-grow">{skill.description}</p>
+                    {skill.extraIcons}
+                  </div>
+                </motion.div>
               </div>
-              
-              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors tracking-tight">{skill.title}</h3>
-              <p className="text-[11px] font-mono text-primary/80 mb-4 uppercase tracking-widest">{skill.tech}</p>
-              <p className="text-foreground/70 text-sm leading-relaxed font-light">{skill.description}</p>
-              {skill.extraIcons}
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
