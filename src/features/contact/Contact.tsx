@@ -1,10 +1,63 @@
-"use client";
-
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { Send, Terminal, Mail, MapPin, MessageSquare, ArrowUpRight } from "lucide-react";
+import { Send, Terminal, Mail, MapPin, MessageSquare, ArrowUpRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 export function Contact() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formRef.current) return;
+
+    const formData = new FormData(formRef.current);
+    const name = formData.get("user_name") as string;
+    const email = formData.get("user_email") as string;
+    const message = formData.get("message") as string;
+
+    if (!name || !email || !message) {
+      setStatus("error");
+      setErrorMessage("Please fill in all fields.");
+      return;
+    }
+
+    setIsSending(true);
+    setStatus("idle");
+
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setIsSending(false);
+      setStatus("error");
+      setErrorMessage("EmailJS is not fully configured yet. Please configure NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, and NEXT_PUBLIC_EMAILJS_PUBLIC_KEY in your env file.");
+      return;
+    }
+
+    try {
+      await emailjs.sendForm(
+        serviceId,
+        templateId,
+        formRef.current,
+        {
+          publicKey: publicKey,
+        }
+      );
+      setStatus("success");
+      formRef.current.reset();
+    } catch (err: any) {
+      console.error("EmailJS Error:", err);
+      setStatus("error");
+      setErrorMessage(err?.text || "Failed to send message. Please try again later or contact me directly.");
+    } finally {
+      setIsSending(false);
+    }
+  };
   return (
     <section id="contact" className="py-8 relative overflow-hidden bg-transparent w-full">
       <div className="max-w-6xl mx-auto relative z-10">
@@ -119,7 +172,7 @@ export function Contact() {
 
                 {/* Inner Card Content */}
                 <div className="relative z-10 bg-secondary/85 backdrop-blur-2xl rounded-[calc(1.5rem-1px)] m-[1px] p-8 flex flex-col">
-                  <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
+                  <form ref={formRef} className="flex flex-col gap-6" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="flex flex-col gap-2">
                         <label htmlFor="name" className="text-xs font-mono font-bold tracking-wider text-foreground/75 uppercase">
@@ -128,7 +181,9 @@ export function Contact() {
                         <input
                           type="text"
                           id="name"
+                          name="user_name"
                           placeholder="John Doe"
+                          required
                           className="bg-slate-950/60 border border-border/80 rounded-xl px-4 py-3.5 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/60 transition-all text-foreground font-light placeholder:text-foreground/30"
                         />
                       </div>
@@ -139,7 +194,9 @@ export function Contact() {
                         <input
                           type="email"
                           id="email"
+                          name="user_email"
                           placeholder="john@example.com"
+                          required
                           className="bg-slate-950/60 border border-border/80 rounded-xl px-4 py-3.5 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/60 transition-all text-foreground font-light placeholder:text-foreground/30"
                         />
                       </div>
@@ -151,17 +208,34 @@ export function Contact() {
                       </label>
                       <textarea
                         id="message"
+                        name="message"
                         rows={5}
                         placeholder="Tell me about your project..."
+                        required
                         className="bg-slate-950/60 border border-border/80 rounded-xl px-4 py-3.5 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/60 transition-all text-foreground font-light placeholder:text-foreground/30 resize-none"
                       ></textarea>
                     </div>
 
+                    {status === "success" && (
+                      <div className="flex items-center gap-2.5 p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-xl text-xs md:text-sm font-mono">
+                        <CheckCircle2 size={16} className="shrink-0" />
+                        <span>Message sent successfully! I will get back to you shortly.</span>
+                      </div>
+                    )}
+
+                    {status === "error" && (
+                      <div className="flex items-start gap-2.5 p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl text-xs md:text-sm font-mono">
+                        <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                        <span>{errorMessage}</span>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="group flex items-center justify-center gap-2.5 bg-gradient-to-r from-cyan-400 via-primary to-accent text-white font-bold py-4 rounded-xl hover:shadow-[0_0_25px_rgba(6,182,212,0.35)] hover:scale-101 transition-all duration-300 w-full md:w-auto md:px-12 self-end mt-2 cursor-pointer"
+                      disabled={isSending}
+                      className="group flex items-center justify-center gap-2.5 bg-gradient-to-r from-cyan-400 via-primary to-accent text-white font-bold py-4 rounded-xl hover:shadow-[0_0_25px_rgba(6,182,212,0.35)] hover:scale-101 transition-all duration-300 w-full md:w-auto md:px-12 self-end mt-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:shadow-none"
                     >
-                      Send Message
+                      {isSending ? "Sending..." : "Send Message"}
                       <Send size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
                     </button>
                   </form>
