@@ -2,24 +2,37 @@
 
 import { motion } from "framer-motion";
 import { WaveDivider } from "./WaveDivider";
-import { SiReact, SiNextdotjs, SiFlutter, SiNodedotjs, SiFirebase, SiPostgresql, SiSwift, SiKotlin, SiPython, SiTailwindcss, SiTypescript, SiDocker } from "react-icons/si";
+import { 
+  SiReact, SiNextdotjs, SiVuedotjs, SiVite, SiTailwindcss, SiTypescript,
+  SiFlutter, SiSwift, SiKotlin, SiDart,
+  SiNodedotjs, SiNestjs, SiExpress, SiPython, SiFirebase, SiSupabase, SiPostgresql, SiMongodb,
+  SiDocker, SiFigma, SiGithub
+} from "react-icons/si";
 
 const ROW_1 = [
   { icon: SiReact, name: "React", color: "#61DAFB" },
   { icon: SiNextdotjs, name: "Next.js", color: "#ffffff" },
+  { icon: SiVuedotjs, name: "Vue", color: "#4FC08D" },
   { icon: SiTailwindcss, name: "Tailwind", color: "#06B6D4" },
   { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
   { icon: SiFlutter, name: "Flutter", color: "#02569B" },
+  { icon: SiKotlin, name: "Kotlin", color: "#7F52FF" },
   { icon: SiSwift, name: "Swift", color: "#F05138" },
+  { icon: SiDart, name: "Dart", color: "#0175C2" },
+  { icon: SiGithub, name: "GitHub", color: "#ffffff" },
 ];
 
 const ROW_2 = [
-  { icon: SiKotlin, name: "Kotlin", color: "#7F52FF" },
   { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
+  { icon: SiNestjs, name: "Nest.js", color: "#E0234E" },
+  { icon: SiExpress, name: "Express", color: "#ffffff" },
   { icon: SiPython, name: "Python", color: "#3776AB" },
   { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
+  { icon: SiSupabase, name: "Supabase", color: "#3ECF8E" },
   { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
+  { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
   { icon: SiDocker, name: "Docker", color: "#2496ED" },
+  { icon: SiFigma, name: "Figma", color: "#F24E1E" },
 ];
 
 export function TechMarquee() {

@@ -3,73 +3,70 @@
 import { useRef } from "react";
 import { motion, useMotionTemplate, useMotionValue, useSpring } from "framer-motion";
 import {
-  FaReact, FaNodeJs, FaDocker, FaPython, FaSwift, FaAndroid, FaDatabase, FaAws,
-} from "react-icons/fa";
-import {
-  SiNextdotjs, SiTypescript, SiTailwindcss, SiFlutter, SiKotlin,
-  SiPostgresql, SiMongodb, SiGraphql, SiTensorflow,
-  SiFirebase, SiRedis,
+  SiReact, SiNextdotjs, SiVuedotjs, SiTailwindcss, SiVite,
+  SiFlutter, SiKotlin, SiSwift,
+  SiNodedotjs, SiNestjs, SiExpress, SiFirebase, SiSupabase, SiPostgresql, SiMongodb
 } from "react-icons/si";
-import { Brain } from "lucide-react";
+import { Monitor, Smartphone, Server, Brain, Bot, Workflow } from "lucide-react";
 import { WaveDivider } from "./WaveDivider";
 
 const SERVICES = [
   {
-    icon: "🌐",
+    icon: Monitor,
     title: "Web Development",
-    desc: "Crafting blazing-fast, pixel-perfect web experiences with cutting-edge frameworks and responsive design systems.",
+    desc: "From high-converting landing pages to complex data dashboards, I build frontends that users love and backends that won't break. I focus heavily on performance and SEO.",
     color: "from-cyan-400 via-blue-500 to-indigo-600",
     glowColor: "rgba(56, 189, 248, 0.15)",
     borderColor: "from-cyan-400/60 to-indigo-500/60",
     skills: [
-      { icon: FaReact, name: "React", color: "#61DAFB" },
+      { icon: SiReact, name: "React", color: "#61DAFB" },
       { icon: SiNextdotjs, name: "Next.js", color: "#ffffff" },
-      { icon: SiTypescript, name: "TypeScript", color: "#3178C6" },
+      { icon: SiVuedotjs, name: "Vue", color: "#4FC08D" },
       { icon: SiTailwindcss, name: "Tailwind", color: "#06B6D4" },
+      { icon: SiVite, name: "Vite", color: "#646CFF" },
     ],
   },
   {
-    icon: "📱",
-    title: "Mobile Apps",
-    desc: "Delivering smooth, native-feel mobile experiences across iOS & Android with a single codebase approach.",
+    icon: Smartphone,
+    title: "Mobile Experiences",
+    desc: "I craft cross-platform and native mobile applications that prioritize fluid UI/UX and deep hardware integration, ensuring a premium feel on both iOS and Android.",
     color: "from-violet-400 via-purple-500 to-fuchsia-600",
     glowColor: "rgba(167, 139, 250, 0.15)",
     borderColor: "from-violet-400/60 to-fuchsia-500/60",
     skills: [
       { icon: SiFlutter, name: "Flutter", color: "#02569B" },
-      { icon: FaSwift, name: "Swift", color: "#F05138" },
       { icon: SiKotlin, name: "Kotlin", color: "#7F52FF" },
-      { icon: FaAndroid, name: "Android", color: "#3DDC84" },
+      { icon: SiSwift, name: "Swift", color: "#F05138" },
     ],
   },
   {
-    icon: "⚙️",
+    icon: Server,
     title: "Backend & Cloud",
-    desc: "Architecting scalable APIs, microservices, and cloud infrastructure that handles millions of requests seamlessly.",
+    desc: "I design secure, scalable, and cost-effective databases and serverless architectures that can handle high traffic without breaking a sweat.",
     color: "from-emerald-400 via-teal-500 to-green-600",
     glowColor: "rgba(52, 211, 153, 0.15)",
     borderColor: "from-emerald-400/60 to-green-500/60",
     skills: [
-      { icon: FaNodeJs, name: "Node.js", color: "#339933" },
-      { icon: FaPython, name: "Python", color: "#3776AB" },
-      { icon: SiPostgresql, name: "PostgreSQL", color: "#4169E1" },
+      { icon: SiNodedotjs, name: "Node.js", color: "#339933" },
+      { icon: SiNestjs, name: "Nest.js", color: "#E0234E" },
+      { icon: SiExpress, name: "Express", color: "#ffffff" },
+      { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
+      { icon: SiSupabase, name: "Supabase", color: "#3ECF8E" },
+      { icon: SiPostgresql, name: "Postgres", color: "#4169E1" },
       { icon: SiMongodb, name: "MongoDB", color: "#47A248" },
-      { icon: SiGraphql, name: "GraphQL", color: "#E10098" },
-      { icon: SiRedis, name: "Redis", color: "#DC382D" },
     ],
   },
   {
-    icon: "🤖",
+    icon: Brain,
     title: "AI & Automation",
-    desc: "Integrating intelligent AI features—from chatbots to custom ML pipelines—turning data into actionable insights.",
+    desc: "I help businesses automate repetitive tasks by building custom AI agents and seamlessly connecting LLMs into production environments.",
     color: "from-amber-400 via-orange-500 to-rose-600",
     glowColor: "rgba(251, 191, 36, 0.15)",
     borderColor: "from-amber-400/60 to-rose-500/60",
     skills: [
       { icon: Brain, name: "LLMs", color: "#10B981" },
-      { icon: SiTensorflow, name: "TensorFlow", color: "#FF6F00" },
-      { icon: FaAws, name: "AWS", color: "#FF9900" },
-      { icon: SiFirebase, name: "Firebase", color: "#FFCA28" },
+      { icon: Bot, name: "AI Agents", color: "#F59E0B" },
+      { icon: Workflow, name: "Automation", color: "#8B5CF6" },
     ],
   },
 ];
@@ -126,11 +123,11 @@ function ServiceCard({ service, index }: { service: typeof SERVICES[0]; index: n
 
       {/* Card content */}
       <div className="relative z-10 h-full bg-secondary/80 backdrop-blur-xl rounded-[calc(1.5rem-1px)] m-[1px] p-8 flex flex-col">
-        {/* Emoji icon with glow */}
+        {/* Lucide icon with glow */}
         <div className="relative mb-6">
           <div className={`absolute inset-0 w-16 h-16 bg-gradient-to-br ${service.color} rounded-2xl blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-500`} />
-          <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-3xl shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3`}>
-            {service.icon}
+          <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white shadow-lg transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3`}>
+            <service.icon className="w-8 h-8" />
           </div>
         </div>
 
@@ -189,9 +186,9 @@ export function ServicesSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter mb-6"
           >
-            What I{" "}
+            How I Can{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-400 to-accent">
-              Build
+              Help You
             </span>
           </motion.h2>
 
