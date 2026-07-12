@@ -2,7 +2,6 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { Send, Terminal, Mail, MapPin, MessageSquare, ArrowUpRight, CheckCircle2, AlertCircle } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import emailjs from "@emailjs/browser";
 
 export function Contact() {
   const formRef = useRef<HTMLFormElement>(null);
@@ -28,32 +27,28 @@ export function Contact() {
     setIsSending(true);
     setStatus("idle");
 
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      setIsSending(false);
-      setStatus("error");
-      setErrorMessage("EmailJS is not fully configured yet. Please configure NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, and NEXT_PUBLIC_EMAILJS_PUBLIC_KEY in your env file.");
-      return;
-    }
-
     try {
-      await emailjs.sendForm(
-        serviceId,
-        templateId,
-        formRef.current,
-        {
-          publicKey: publicKey,
-        }
-      );
-      setStatus("success");
-      formRef.current.reset();
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        formRef.current.reset();
+      } else {
+        setStatus("error");
+        setErrorMessage(data.error || "Failed to send message. Please try again later.");
+      }
     } catch (err: any) {
-      console.error("EmailJS Error:", err);
+      console.error("Submission Error:", err);
       setStatus("error");
-      setErrorMessage(err?.text || "Failed to send message. Please try again later or contact me directly.");
+      setErrorMessage("Failed to send message. Please try again later or contact me directly.");
     } finally {
       setIsSending(false);
     }
