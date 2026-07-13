@@ -16,8 +16,36 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mahbub Shihab - AI & Full-Stack Developer",
-  description: "Portfolio of Mahbub Shihab, showcasing AI integration, web and mobile app development.",
+  title: "Mahbub Shihab | AI & Full-Stack Developer",
+  description: "AI Engineer and Full-Stack Developer specializing in modern web apps, intelligent machine learning systems, and premium digital experiences.",
+  keywords: [
+    "Mahbub Shihab",
+    "AI Engineer",
+    "Full-Stack Developer",
+    "Next.js Developer",
+    "Software Engineer",
+    "Machine Learning Specialist",
+    "Dhaka Developer",
+    "React Developer"
+  ],
+  authors: [{ name: "Mahbub Shihab", url: "https://mahbubshihab.com" }],
+  creator: "Mahbub Shihab",
+  openGraph: {
+    title: "Mahbub Shihab | AI & Full-Stack Developer",
+    description: "AI Engineer and Full-Stack Developer specializing in modern web apps and premium digital experiences.",
+    url: "https://mahbubshihab.com",
+    siteName: "Mahbub Shihab Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mahbub Shihab | AI & Full-Stack Developer",
+    description: "AI Engineer and Full-Stack Developer specializing in modern web apps.",
+  },
+  alternates: {
+    canonical: "https://mahbubshihab.com",
+  },
 };
 
 export default function RootLayout({
